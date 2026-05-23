@@ -1,0 +1,44 @@
+<table class="table table-stripped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Experience</th>
+      <th>Notice Period</th>
+      <th>Primary Skills</th>
+      <th>Secondary Skills</th>
+      <th>Cell</th>
+      <th>Email</th>
+      <th>Location</th>
+      <th>Previous Comapny</th>
+      <th>CTC</th>
+      <th>ECTC</th>
+      <th>Mode</th>
+      <th>Education</th>
+      <th>Comment</th>
+      <th>Client Round</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let candidate of candidates; let i = index">
+      <td>{{candidate.id}}</td>
+  <td>{{candidate.status}}</td>
+  <td>{{candidate.name}}</td>
+  <td>{{candidate.experience}}</td>
+  <td>{{candidate.noticePeriod}}</td>
+  <td>{{candidate.primarySkills}}</td>
+  <td>{{candidate.secondarySkills}}</td>
+  <td>{{candidate.cell}}</td>
+  <td>{{candidate.email}}</td>
+  <td>{{candidate.location}}</td>
+  <td>{{candidate.previousCompany}}</td>
+  <td>{{candidate.ctc}}</td>
+  <td>{{candidate.ectc}}</td>
+  <td>{{candidate.mode}}</td>
+  <td>{{candidate.education}}</td>
+  <td>{{candidate.comment}}</td>
+  <td>{{candidate.clientRound}}</td>
+  </tr>
+  </tbody>
+</table>

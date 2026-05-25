@@ -1,0 +1,458 @@
+<div class="container mt-4 mb-5">
+
+  <div class="card shadow border-0 custom-card">
+
+    
+    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
+      <h4 class="mb-0 fw-semibold">
+        Add / Edit Candidate
+      </h4>
+
+      <button
+        type="button"
+        class="btn btn-sm btn-danger px-3"
+        (click)="onCancel()"
+      >
+        <i class="bi bi-x-lg"></i> Close
+      </button>
+    </div>
+
+    
+    <div class="card-body bg-light">
+
+      <form [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+
+        
+        <div class="row mb-3">
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Status *
+            </label>
+
+            <select
+              formControlName="status"
+              class="form-select input-required"
+            >
+              <option value="">Select Status</option>
+
+              <option
+                *ngFor="let status of statusOptions"
+                [value]="status"
+              >
+                {{ status }}
+              </option>
+            </select>
+
+            <small
+              class="text-danger"
+              *ngIf="f['status'].touched && f['status'].invalid"
+            >
+              Status is required
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Name *
+            </label>
+
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control input-required"
+              placeholder="Full name"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['name'].touched && f['name'].errors?.['required']"
+            >
+              Name is required
+            </small>
+
+            <small
+              class="text-danger"
+              *ngIf="f['name'].touched && f['name'].errors?.['minlength']"
+            >
+              Minimum 2 characters required
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Experience (Yrs) *
+            </label>
+
+            <input
+              type="number"
+              formControlName="experience"
+              class="form-control input-required"
+              placeholder="e.g. 3 or 3.5"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['experience'].touched && f['experience'].invalid"
+            >
+              Valid experience is required
+            </small>
+          </div>
+
+        </div>
+
+        
+        <div class="row mb-3">
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Notice Period *
+            </label>
+
+            <input
+              type="text"
+              formControlName="noticePeriod"
+              class="form-control input-required"
+              placeholder="e.g. Immediate / 30 days"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['noticePeriod'].touched && f['noticePeriod'].invalid"
+            >
+              Notice Period is required
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Primary Skills *
+            </label>
+
+            <input
+              type="text"
+              formControlName="primarySkills"
+              class="form-control input-required"
+              placeholder="e.g. Angular, Java"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['primarySkills'].touched && f['primarySkills'].invalid"
+            >
+              Primary Skills are required
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label text-muted">
+              Secondary Skills
+            </label>
+
+            <input
+              type="text"
+              formControlName="secondarySkills"
+              class="form-control"
+              placeholder="Optional"
+            >
+          </div>
+
+        </div>
+
+        
+        <div class="row mb-3">
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Cell / Phone *
+            </label>
+
+            <input
+              type="text"
+              formControlName="cell"
+              class="form-control input-required"
+              placeholder="10 digit number"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['cell'].touched && f['cell'].errors?.['required']"
+            >
+              Phone number is required
+            </small>
+
+            <small
+              class="text-danger"
+              *ngIf="f['cell'].touched && f['cell'].errors?.['pattern']"
+            >
+              Enter valid 10 digit phone number
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Email *
+            </label>
+
+            <input
+              type="email"
+              formControlName="email"
+              class="form-control input-required"
+              placeholder="name@example.com"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['email'].touched && f['email'].errors?.['required']"
+            >
+              Email is required
+            </small>
+
+            <small
+              class="text-danger"
+              *ngIf="f['email'].touched && f['email'].errors?.['email']"
+            >
+              Enter valid email
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Location *
+            </label>
+
+            <input
+              type="text"
+              formControlName="location"
+              class="form-control input-required"
+              placeholder="City name only"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['location'].touched && f['location'].invalid"
+            >
+              Valid city name is required
+            </small>
+          </div>
+
+        </div>
+
+        
+        <div class="row mb-3">
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Previous Company *
+            </label>
+
+            <input
+              type="text"
+              formControlName="previousCompany"
+              class="form-control input-required"
+              placeholder="Employer name"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['previousCompany'].touched && f['previousCompany'].invalid"
+            >
+              Previous company is required
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              CTC (LPA) *
+            </label>
+
+            <input
+              type="number"
+              formControlName="ctc"
+              class="form-control input-required"
+              placeholder="e.g. 8.50"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['ctc'].touched && f['ctc'].invalid"
+            >
+              Valid CTC required (up to 2 decimal places)
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              ECTC (LPA) *
+            </label>
+
+            <input
+              type="number"
+              formControlName="ectc"
+              class="form-control input-required"
+              placeholder="e.g. 10.50"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['ectc'].touched && f['ectc'].invalid"
+            >
+              Valid ECTC required
+            </small>
+          </div>
+
+        </div>
+
+        
+        <div class="row mb-4">
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Mode *
+            </label>
+
+            <select
+              formControlName="mode"
+              class="form-select input-required"
+            >
+              <option value="">Select Mode</option>
+
+              <option
+                *ngFor="let mode of modeOptions"
+                [value]="mode"
+              >
+                {{ mode }}
+              </option>
+            </select>
+
+            <small
+              class="text-danger"
+              *ngIf="f['mode'].touched && f['mode'].invalid"
+            >
+              Mode is required
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label fw-bold field-required">
+              Education *
+            </label>
+
+            <input
+              type="text"
+              formControlName="education"
+              class="form-control input-required"
+              placeholder="Highest qualification"
+            >
+
+            <small
+              class="text-danger"
+              *ngIf="f['education'].touched && f['education'].invalid"
+            >
+              Education is required
+            </small>
+          </div>
+
+          
+          <div class="col-md-4">
+            <label class="form-label text-muted">
+              Client Round
+            </label>
+
+            <input
+              type="text"
+              formControlName="clientRound"
+              class="form-control"
+              placeholder="e.g. L1 / HR"
+            >
+          </div>
+
+        </div>
+
+        
+        <div class="row mb-4">
+
+          <div class="col-12">
+
+            <label class="form-label text-muted">
+              Comment / Remark
+            </label>
+
+            <textarea
+              formControlName="comment"
+              class="form-control"
+              rows="3"
+              placeholder="Optional notes..."
+            ></textarea>
+
+          </div>
+
+        </div>
+         
+        <div class="custom-warning-alert mb-3" role="alert">
+              <span class="alert-square-icon"></span>
+              <span>Please fill all required (*) fields</span>
+            </div>
+        
+        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+
+          <div class="legend-container d-flex gap-2 align-items-center">
+            <span class="legend-title">Legend:</span>
+
+            <span class="legend-item  legend-required badge text-dark border p-2 bg-success-subtle">
+              Required field *
+            </span>
+
+            <span class="legend-item legend-optional badge text-dark border bg-white p-2">
+              Optional field
+            </span>
+            
+            
+
+            <span class="legend-item legend-dropdown">Dropdown</span>
+
+          </div>
+
+          <div class="d-flex gap-2">
+
+            <button
+              type="button"
+              class="btn btn-secondary px-4"
+              (click)="onCancel()"
+            >
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              class="btn btn-primary px-4"
+              [disabled]="candidateForm.invalid"
+            >
+              Save Candidate
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

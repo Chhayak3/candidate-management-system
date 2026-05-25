@@ -1,0 +1,42 @@
+/* Custom typography matching the UI layout */
+.fs-7 {
+  font-size: 0.85rem;
+}
+
+.tracking-wide {
+  letter-spacing: 0.05rem;
+}
+
+/* Custom layout scrollbar styling to look modern */
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Typography polish */
+.font-medium {
+  font-weight: 500;
+}
+
+#btn-import{
+  color: white;
+  background-color: #238636;
+}
+
+#btn-add{
+  color: white;
+  background-color: #3460FB;
+}

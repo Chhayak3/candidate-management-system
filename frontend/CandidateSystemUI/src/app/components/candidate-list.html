@@ -1,44 +1,112 @@
-<table class="table table-stripped">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Status</th>
-      <th>Name</th>
-      <th>Experience</th>
-      <th>Notice Period</th>
-      <th>Primary Skills</th>
-      <th>Secondary Skills</th>
-      <th>Cell</th>
-      <th>Email</th>
-      <th>Location</th>
-      <th>Previous Comapny</th>
-      <th>CTC</th>
-      <th>ECTC</th>
-      <th>Mode</th>
-      <th>Education</th>
-      <th>Comment</th>
-      <th>Client Round</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let candidate of candidates; let i = index">
-      <td>{{candidate.id}}</td>
-  <td>{{candidate.status}}</td>
-  <td>{{candidate.name}}</td>
-  <td>{{candidate.experience}}</td>
-  <td>{{candidate.noticePeriod}}</td>
-  <td>{{candidate.primarySkills}}</td>
-  <td>{{candidate.secondarySkills}}</td>
-  <td>{{candidate.cell}}</td>
-  <td>{{candidate.email}}</td>
-  <td>{{candidate.location}}</td>
-  <td>{{candidate.previousCompany}}</td>
-  <td>{{candidate.ctc}}</td>
-  <td>{{candidate.ectc}}</td>
-  <td>{{candidate.mode}}</td>
-  <td>{{candidate.education}}</td>
-  <td>{{candidate.comment}}</td>
-  <td>{{candidate.clientRound}}</td>
-  </tr>
-  </tbody>
-</table>
+<div class="container-fluid my-4 px-4">
+  
+  <div class="card shadow-sm border-0">
+    <div class="card-header text-white py-3" style="background-color: #1d4e89;">
+      <h3 class="mb-0 fs-4 fw-semibold">Candidate Management System <span>• Full-Stack Intern Position • Software Healers</span></h3>
+    </div>
+
+    <div class="card-body">
+      <div class="row g-3 align-items-center mb-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="bi bi-search text-muted"></i>
+            </span>
+            <input 
+              type="text" 
+              class="form-control border-start-0 ps-0" 
+              placeholder="Search by Name / Email / Phone..." 
+              [(ngModel)]="searchText"
+              (input)="onSearch()"
+            />
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-8 text-md-end text-start" >
+          <button class="btn  me-2 fw-medium" id="btn-add" (click)="openAddCandidate()">
+            <i class="bi bi-plus-lg me-1"></i> &#x2b;Add Candidate
+          </button>
+          <button class="btn" id="btn-import" (click)="fileInput.click()">
+            <i class="bi bi-upload me-1"></i> Import CSV
+          </button>
+          <input
+  type="file"
+  #fileInput
+  hidden
+  accept=".csv"
+  (change)="onFileSelected($event)"
+>
+        </div>
+      </div>
+
+      <div class="table-responsive border rounded bg-primary text-white">
+        <table class="table table-hover align-middle mb-0 text-nowrap">
+          <thead class="text-white text-secondary text-uppercase fs-7 navy-header" >
+            <tr class="bg-primary">
+              <th scope="col" class="py-3">Status</th>
+              <th scope="col" class="py-3">Name</th>
+              <th scope="col" class="py-3">Exp</th>
+              <th scope="col" class="py-3">NP</th>
+              <th scope="col" class="py-3">Primary Skills</th>
+              <th scope="col" class="py-3">Cell</th>
+              <th scope="col" class="py-3">Email</th>
+              <th scope="col" class="py-3">Location</th>
+              <th scope="col" class="py-3">Prev Company</th>
+              <th scope="col" class="py-3">CTC</th>
+              <th scope="col" class="py-3">ECTC</th>
+              <th scope="col" class="py-3">Mode</th>
+              <th scope="col" class="py-3 text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let candidate of filteredCandidates">
+              <td>
+                <span  class="badge px-3 py-2 rounded-pill text-capitalize" *ngIf="candidate.status"  
+                      [ngClass]="{
+                       'bg-success text-white': candidate.status?.toLowerCase() === 'active',
+      'bg-warning text-dark': candidate.status?.toLowerCase() === 'on hold',
+      'bg-primary text-white': candidate.status?.toLowerCase() === 'placed',
+      'bg-danger text-white': candidate.status?.toLowerCase() === 'rejected'
+                      }">
+                  {{ candidate.status }}
+                </span>
+              </td>
+              <td class="text-capitalize font-medium fw-bold text-dark">{{ candidate.name }}</td>
+              <td>{{ candidate.experience }}</td>
+              <td>{{ candidate.noticePeriod }}</td>
+              <td class="text-capitalize">{{ candidate.primarySkills }}</td>
+              <td>{{ candidate.cell }}</td>
+              <td>{{ candidate.email }}</td>
+              <td class="text-capitalize">{{ candidate.location }}</td>
+              <td class="text-uppercase">{{ candidate.previousCompany }}</td>
+              <td>{{ candidate.ctc }}</td>
+              <td>{{ candidate.ectc }}</td>
+              <td class="text-capitalize">{{ candidate.mode }}</td>
+              <td class="text-center">
+  <button
+    class="btn btn-sm btn-outline-primary me-2"
+    (click)="editCandidate(candidate)"
+  >
+    <i class="bi bi-pencil-square">Edit</i>
+  </button>
+
+  <button
+    class="btn btn-sm btn-outline-danger"
+    (click)="deleteCandidate(candidate.id)"
+  >
+    <i class="bi bi-trash">Delete</i>
+  </button>
+</td>
+            </tr>
+            <tr *ngIf="filteredCandidates.length === 0">
+              <td colspan="12" class="text-center py-4 text-muted">
+                No candidates found matching the criteria.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

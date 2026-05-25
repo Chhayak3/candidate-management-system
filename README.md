@@ -19,7 +19,7 @@ A full-stack Candidate Management System built using Angular, Spring Boot, and M
 
 
 
-## Project Status / Pending Features
+## Project Status 
 
 The application is functionally complete for core candidate management operations. However, a few features are still in progress:
 

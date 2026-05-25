@@ -17,6 +17,25 @@ export class CandidateService {
     return this.http.get<Candidate[]>(`${this.baseUrl}`)
   }
 
+  addCandidate(candidate:Candidate):Observable<Candidate>{
+    return this.http.post<Candidate>(this.baseUrl,candidate);
+  }
   
+  updateCandidate(id:number,candidate:Candidate):Observable<Candidate>{
+    return this.http.put<Candidate>(`${this.baseUrl}/${id}`,candidate);
+  }
 
+  deleteCandidate(id:number):Observable<void>
+{
+  return this.http.delete<void>(`${this.baseUrl}/${id}`);
+}
+
+importCSV(file:File):Observable<any>{
+  const formData = new FormData();
+  formData.append('file',file);
+
+  return this.http.post(
+    `${this.baseUrl}/import`, formData
+    );
+}
 }
